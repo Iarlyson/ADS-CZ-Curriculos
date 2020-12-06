@@ -2,7 +2,7 @@
   "name": "ads-cz-curriculos",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Iarlyson/ADS-CZ-Curriculos#readme",
   "devDependencies": {
-    "husky": "^4.3.4",
+    "husky": "^4.3.0",
     "nodemon": "^2.0.6"
   },
   "dependencies": {
