@@ -1,5 +1,6 @@
-
 import React from "react";
+import { Link} from 'react-router-dom';
+import {FiLogIn} from 'react-icons/fi';
 
 
 import './styles.css';
@@ -17,7 +18,11 @@ export default function Logon(){
               <h1>Faça seu Login</h1>
               <input placeholder="Matricula" />
               <button className="button" type="submit">Entrar</button>
-
+              
+              <Link className="back-link" to="/adm">
+                <FiLogIn />
+                Você um administrador? Entre aqui!!
+              </Link>
               
           </form>
         

@@ -1,0 +1,45 @@
+
+.adm-container{
+    width: 100%;
+    max-width: 1120px;
+    height: 100vh;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+}
+
+.adm-container .content {
+    width: 100%;
+    padding: 96px;
+    background: #FFF;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.adm-container .content section {
+    width: 100%;
+    max-width: 320px;
+}
+
+.adm-container .content select h1{
+    margin: 64px 0 32px;
+    font-size: 32px;
+}
+
+.adm-container .content form{
+    width: 100%;
+    max-width: 580px;
+}
+
+.adm-container .content form input{
+    margin-top: 8px;
+}
+
+
