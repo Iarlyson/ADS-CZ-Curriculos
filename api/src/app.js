@@ -6,6 +6,7 @@ const app = express();
 // ==> Rotas da API:
 const index = require('./routes/index');
 const userRoute = require('./routes/user.routes');
+const curriculumRoute = require('./routes/curriculum.routes');
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -15,4 +16,5 @@ app.use(cors());
 
 app.use(index);
 app.use('/api/', userRoute);
+app.use('/api/', curriculumRoute);
 module.exports = app;
