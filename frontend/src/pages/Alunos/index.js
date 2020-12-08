@@ -36,8 +36,7 @@ export default function Alunos(){
         }
     }
 
-    function atualizarAlunos(id){
- 
+  async function atualizarAlunos(id){
 
 
         const data = {
@@ -51,7 +50,8 @@ export default function Alunos(){
       
 
         try{
-            api.put( `usuario/${id}`, data);
+           await api.put( `usuario/${id}`, data);
+
             alert("feito")
         }catch(err){
             alert('erro ao deletar, tente novamente');
@@ -107,7 +107,8 @@ export default function Alunos(){
                     <button onClick={() => deltarAlunos(aluno.id)} type="button">
                         <FiX size={21} color="#0e3746" />
                     </button>
-                    <input type="submit" onClick={() => atualizarAlunos(aluno.id)}  value="Atualizar"/>
+                    
+                    <input className="btAtualiza" type="submit" onClick={() => atualizarAlunos(aluno.id)}  value="Atualizar"/>
                     </li>
 
                      </form>
