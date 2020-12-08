@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {FiArrowLeft} from 'react-icons/fi';
 
 import api from '../../services/api';
@@ -8,13 +8,15 @@ import './styles.css';
 import logoImg from '../../assets/logo.png';
 
 export default function Adm() {
-
+   
     const [nome, setNome] = useState('');
     const [matricula, setMatricula] = useState('');
     const [datanascimento, setDatanascimento] = useState('');
     const [anoconclusao, setAnoconclusao] = useState('');
     const [turmareferente, setTurmareferente] = useState('');
     
+    const history = useHistory();
+
 
    async function handleAluno(e){
         e.preventDefault();
@@ -29,8 +31,8 @@ export default function Adm() {
 
         try{
              await api.post( 'usuario', data);
-            
-            alert('Cadastro feito');
+            //alert('Cadastro feito');
+            history.push('/alunos');
         }catch(err){
             alert('Erro ao cadastrar');
         }
