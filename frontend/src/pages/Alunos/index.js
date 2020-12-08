@@ -11,7 +11,11 @@ import './styles.css';
 export default function Alunos(){
 
     const [nome, setNome] = useState('');
-
+    const [matricula, setMatricula] = useState('');
+    const [datanascimento, setDatanascimento] = useState('');
+    const [datadeconclusao, setDatadeconclusao] = useState('');
+    const [turmareferente, setTurmareferente] = useState('');
+    
     const [alunos, setAlunos] = useState([]);
     const history = useHistory();
 
@@ -38,6 +42,10 @@ export default function Alunos(){
 
         const data = {
             nome, 
+            matricula,
+            datanascimento,
+            datadeconclusao,
+            turmareferente
         };
         
       
@@ -77,20 +85,24 @@ export default function Alunos(){
                     <li key={aluno.id}>
 
                     <strong>Nome:</strong>
-                    <input defaultValue={aluno.nome}
+                    <input type="text" defaultValue={aluno.nome}
                     onChange={e => setNome(e.target.value)}  />
 
                     <strong>Matricula:</strong>
-                    <input defaultValue={aluno.matricula}/>
+                    <input type="number" defaultValue={aluno.matricula}
+                    onChange={e => setMatricula(e.target.value)}/>
 
                     <strong>Data Nascimento:</strong>
-                    <input type="date" defaultValue={aluno.date}/>
+                    <input defaultValue={aluno.datanascimento} 
+                    onChange={e => setDatanascimento(e.target.value)} />
 
                     <strong>Ano Conclusão:</strong>
-                    <input  defaultValue={aluno.datadeconclusao} />
+                    <input  defaultValue={aluno.datadeconclusao}
+                    onChange={e => setDatadeconclusao(e.target.value)} />
 
                     <strong>Turma Referente:</strong>
-                    <input defaultValue={aluno.turmareferente}  />
+                    <input defaultValue={aluno.turmareferente}
+                    onChange={e => setTurmareferente(e.target.value)} />
 
                     <button onClick={() => deltarAlunos(aluno.id)} type="button">
                         <FiX size={21} color="#0e3746" />
