@@ -34,6 +34,11 @@
     margin-left: 16px;
     transition: border-color 0.2s;
 }
+#editar{
+    height: 600px;
+    width: 400px;
+    border-radius: 4px;
+}
 
 .alunos-container header button:hover {
     border-color: #999;

@@ -10,6 +10,8 @@ import './styles.css';
 
 export default function Alunos(){
 
+    const [nome, setNome] = useState('');
+
     const [alunos, setAlunos] = useState([]);
     const history = useHistory();
 
@@ -20,6 +22,7 @@ export default function Alunos(){
     }, []);
 
     async function deltarAlunos(id){
+
         try{
             await api.delete(`usuario/${id}`);
 
@@ -28,6 +31,27 @@ export default function Alunos(){
             alert('erro ao deletar, tente novamente');
         }
     }
+
+    function atualizarAlunos(id){
+ 
+
+
+        const data = {
+            nome, 
+        };
+        
+      
+
+        try{
+            api.put( `usuario/${id}`, data);
+            alert("feito")
+        }catch(err){
+            alert('erro ao deletar, tente novamente');
+        }
+
+
+    }
+
 
     function Logout(){
         history.push('/');
@@ -49,26 +73,33 @@ export default function Alunos(){
             <h1>Alunos Cadastrados</h1>
             <ul>
                 {alunos.map(aluno => (
+                    <form onSubmit={atualizarAlunos}>
                     <li key={aluno.id}>
+
                     <strong>Nome:</strong>
-                    <p>{aluno.nome}</p>
+                    <input defaultValue={aluno.nome}
+                    onChange={e => setNome(e.target.value)}  />
 
                     <strong>Matricula:</strong>
-                    <p> {aluno.matricula} </p>
+                    <input defaultValue={aluno.matricula}/>
 
                     <strong>Data Nascimento:</strong>
-                    <p>{aluno.datanascimento}</p>
+                    <input type="date" defaultValue={aluno.date}/>
 
                     <strong>Ano Conclusão:</strong>
-                    <p>{aluno.anoconclusao}</p>
+                    <input  defaultValue={aluno.datadeconclusao} />
 
                     <strong>Turma Referente:</strong>
-                    <p>{aluno.turmareferente}</p>
+                    <input defaultValue={aluno.turmareferente}  />
 
                     <button onClick={() => deltarAlunos(aluno.id)} type="button">
                         <FiX size={21} color="#0e3746" />
                     </button>
-                </li>
+                    <input type="submit" onClick={() => atualizarAlunos(aluno.id)}  value="Atualizar"/>
+                    </li>
+
+                     </form>
+
                 ))}
 
             </ul>

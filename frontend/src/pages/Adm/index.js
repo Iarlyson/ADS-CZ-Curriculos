@@ -8,11 +8,11 @@ import './styles.css';
 import logoImg from '../../assets/logo.png';
 
 export default function Adm() {
-   
+     
     const [nome, setNome] = useState('');
     const [matricula, setMatricula] = useState('');
     const [datanascimento, setDatanascimento] = useState('');
-    const [anoconclusao, setAnoconclusao] = useState('');
+    const [datadeconclusao, setDatadeconclusao] = useState('');
     const [turmareferente, setTurmareferente] = useState('');
     
     const history = useHistory();
@@ -25,7 +25,7 @@ export default function Adm() {
             nome, 
             matricula,
             datanascimento,
-            anoconclusao,
+            datadeconclusao,
             turmareferente
         };
 
@@ -55,26 +55,26 @@ export default function Adm() {
 
                 <form onSubmit={handleAluno}>
 
-                    <input placeholder="Nome Do Aluno"
+                    <input type="text" placeholder="Nome Do Aluno"
                         value={nome}
                         onChange={e => setNome(e.target.value)} />
 
                     <input type="number"
                          placeholder="Matricula"
-                         value={matricula}
+                         value={matricula} 
                         onChange={e => setMatricula(e.target.value)}/>
 
-                    <input 
+                    <input type="date"
                          placeholder="Data De Nascimento"
                          value={datanascimento}
                         onChange={e => setDatanascimento(e.target.value)} />
 
-                    <input 
-                         placeholder="Ano Conclusão"
-                         value={anoconclusao}
-                        onChange={e => setAnoconclusao(e.target.value)} />
+                    <input type="date"
+                         placeholder="Data de Conclusão"
+                         value={datadeconclusao}
+                        onChange={e => setDatadeconclusao(e.target.value)} />
 
-                    <input 
+                    <input type="number"
                          placeholder="Turma Referente"
                          value={turmareferente}
                         onChange={e => setTurmareferente(e.target.value)} />
@@ -86,3 +86,4 @@ export default function Adm() {
         </div>
     )
 }
+  

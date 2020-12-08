@@ -3,10 +3,10 @@ const pg = require("../config/databasepg");
 //  Método responsável por criar o 'Aluno' no banco SQL Postegres:
 
 exports.createUser = async (req, res) => {
-  const { matricula, nome, datanascimento, anoconclusao, turmareferente } = req.body;
+  const {  nome, matricula, datanascimento, datadeconclusao, turmareferente } = req.body;
   const { rows } = await pg.query(
-    "INSERT INTO Aluno (matricula, nome, datanascimento, anoconclusao, turmareferente) VALUES ($1, $2, $3, $4, $5 )",
-    [matricula, nome, datanascimento, anoconclusao, turmareferente]
+    "INSERT INTO Aluno (nome, matricula, datanascimento, datadeconclusao, turmareferente) VALUES ($1, $2, $3, $4, $5 )",
+    [ nome, matricula, datanascimento, datadeconclusao, turmareferente]
   );
 
   res.status(201).send({
@@ -38,11 +38,11 @@ exports.buscaUsuarioporId = async (req, res) => {
 
 exports.atualizarUserId = async (req, res) => {
   const id = parseInt(req.params.id);
-  const { matricula, nome, datanascimento, anoconclusao, turmareferente } = req.body;
+  const {  nome, matricula, datanascimento, datadeconclusao, turmareferente } = req.body;
 
   const response = await pg.query(
-    "UPDATE Aluno SET matricula =$1 ,nome = $2, datanascimento = $3, anoconclusao = $4, turmareferente = $5 WHERE id = $6",
-    [matricula, nome, datanascimento, anoconclusao, turmareferente, id]
+    "UPDATE Aluno SET nome = $1, matricula = $2 , datanascimento = $3, datadeconclusao = $4, turmareferente = $5 WHERE id = $6",
+    [nome, matricula, datanascimento, datadeconclusao, turmareferente, id]
   );
   res.status(200).send({message: "Aluno atualizado com sucesso !"});
 };
