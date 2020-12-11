@@ -7,10 +7,10 @@ router.post('/usuario', userController.createUser);
 // Rota responsável por listar todos os 'usuarios': (GET): localhost:3000/api/usuario
 router.get('/usuario', userController.listarUser);
 // Rota responsável por selecionar 'usuario' pelo 'Id' : (GET): localhost:3000/api/usuario/:id
-router.get('/usuario/:id', userController.buscaUsuarioporId);
+router.get('/usuario/:matricula', userController.buscaUsuarioporId);
 // Rota responsável por atualizar 'usuario' pelo 'Id' : (PUT): localhost:3000/api/usuario/:id
-router.put('/usuario/:id', userController.atualizarUserId);
+router.put('/usuario/:matricula', userController.atualizarUserId);
 // Rota responsável por deletar 'usuario' pelo 'Id': (DELETE): localhost:3000/api/usuario/:id
-router.delete('/usuario/:id', userController.deletarUserId);
+router.delete('/usuario/:matricula', userController.deletarUserId);
 
 module.exports = router;

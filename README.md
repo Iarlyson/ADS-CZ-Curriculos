@@ -13,7 +13,7 @@ CREATE TABLE Aluno(
 	DataNascimento VARCHAR(10),
 	DatadeConclusao VARCHAR(10),
 	TurmaReferente FLOAT,
-	PRIMARY KEY(Id)
+	PRIMARY KEY(Matricula)
 );
 
 

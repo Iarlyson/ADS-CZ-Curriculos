@@ -18,25 +18,24 @@ export default function Alunos(){
     
     const [alunos, setAlunos] = useState([]);
     const history = useHistory();
-
     useEffect(() =>{
-        api.get('usuario').then(response => {
+        api.get(`usuario/`).then(response => {
             setAlunos(response.data);
         })
     }, []);
 
-    async function deltarAlunos(id){
+    async function deltarAlunos(matriculaid){
 
         try{
-            await api.delete(`usuario/${id}`);
+            await api.delete(`usuario/${matriculaid}`);
 
-            setAlunos(alunos.filter(aluno => aluno.id !== id));
+            setAlunos(alunos.filter(aluno => aluno.matriculaid !== matriculaid));
         }catch(err){
             alert('erro ao deletar, tente novamente');
         }
     }
 
-  async function atualizarAlunos(id){
+  async function atualizarAlunos(matriculaid){
 
 
         const data = {
@@ -50,7 +49,7 @@ export default function Alunos(){
       
 
         try{
-           await api.put( `usuario/${id}`, data);
+           await api.put( `usuario/${matriculaid}`, data);
 
             alert("feito")
         }catch(err){
@@ -104,11 +103,11 @@ export default function Alunos(){
                     <input defaultValue={aluno.turmareferente}
                     onChange={e => setTurmareferente(e.target.value)} />
 
-                    <button onClick={() => deltarAlunos(aluno.id)} type="button">
+                    <button onClick={() => deltarAlunos(aluno.matricula)} type="button">
                         <FiX size={21} color="#0e3746" />
                     </button>
                     
-                    <input className="btAtualiza" type="submit" onClick={() => atualizarAlunos(aluno.id)}  value="Atualizar"/>
+                    <input className="btAtualiza" type="submit" onClick={() => atualizarAlunos(aluno.matricula)}  value="Atualizar"/>
                     </li>
 
                      </form>

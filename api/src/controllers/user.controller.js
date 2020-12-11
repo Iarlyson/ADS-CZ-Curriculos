@@ -27,22 +27,22 @@ exports.listarUser = async (req, res) =>{
 //  Método responsável por selecionar 'Aluno' pelo 'Id' no banco SQL Postegres:
 
 exports.buscaUsuarioporId = async (req, res) => {
-  const id = parseInt(req.params.id);
-  const response = await pg.query('SELECT * FROM Aluno WHERE id = $1', [id]);
+  const matricula = parseInt(req.params.matricula);
+  const response = await pg.query('SELECT * FROM Aluno WHERE matricula = $1', [matricula]);
   res.status(200).send(response.rows);
-  console.log(response.rows[0].id)
+  console.log(response.rows[0].matricula)
 }
 
 
 //  Método responsável por atualizar o 'Aluno' pelo 'Id' no banco SQL Postegres:
 
 exports.atualizarUserId = async (req, res) => {
-  const id = parseInt(req.params.id);
-  const {  nome, matricula, datanascimento, datadeconclusao, turmareferente } = req.body;
+  const matricula = parseInt(req.params.matricula);
+  const { nome, datanascimento, datadeconclusao, turmareferente } = req.body;
 
   const response = await pg.query(
-    "UPDATE Aluno SET nome = $1, matricula = $2 , datanascimento = $3, datadeconclusao = $4, turmareferente = $5 WHERE id = $6",
-    [nome, matricula, datanascimento, datadeconclusao, turmareferente, id]
+    "UPDATE Aluno SET nome = $1, datanascimento = $2, datadeconclusao = $3, turmareferente = $4 WHERE matricula = $5",
+    [nome, datanascimento, datadeconclusao, turmareferente, matricula]
   );
   res.status(200).send({message: "Aluno atualizado com sucesso !"});
 };
@@ -50,9 +50,9 @@ exports.atualizarUserId = async (req, res) => {
 //  Método responsável por excluir o 'Usuário' pelo 'Id' no banco SQL Postegres:
 
 exports.deletarUserId = async (req, res) => {
-  const usuarioId = parseInt(req.params.id);
+  const matricula = parseInt(req.params.matricula);
   await pg.query("DELETE FROM Aluno WHERE id = $1",[
-    usuarioId
+    matricula
   ]);
-  res.status(200).send({message: "Aluno deletado com sucesso ", usuarioId});
+  res.status(200).send({message: "Aluno deletado com sucesso ", matricula});
 }
