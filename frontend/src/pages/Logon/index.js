@@ -5,18 +5,25 @@ import {FiLogIn} from 'react-icons/fi';
 
 import './styles.css';
 
+
+
 import logoImg from '../../assets/logo.png';
 import dev from '../../assets/dev.png';
 
 export default function Logon(){
+
+ 
+
     return (
       <div className="logon-container">
           <section className="form">
           <img src={logoImg} alt="ads-cz" />
 
-          <form>
+          <form >
               <h1>Faça seu Login</h1>
-              <input placeholder="Matricula" />
+              <input placeholder=" ID" 
+                />
+
               <button className="button" type="submit">Entrar</button>
               
               <Link className="back-link" to="/adm">
