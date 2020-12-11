@@ -40,8 +40,11 @@ exports.listarCurriculo =  async (req, res) => {
     const matricula = parseInt(req.params.matricula);
     const curriculos = mongodb.db(`${process.env.MONGO_DATABASE}`).collection('curriculoalunos');
     const filter = { matricula: matricula  };
-    await curriculos.find(filter).forEach( item => 
-        res.status(200).send({item}));
+     await curriculos.find(filter).toArray((erro, result) =>{
+
+        res.status(200).send(result);
+
+    }); 
 }
 
 //  Método responsável por Atualizar o 'Curriculo' de determinado usuário no banco Mongodb:

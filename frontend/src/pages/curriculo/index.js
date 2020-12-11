@@ -7,7 +7,7 @@ import './styles.css';
 
 import logoImg from '../../assets/logo.png';
 
-export default function curriculo(){
+export default function Curriculo(){
 
     const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
