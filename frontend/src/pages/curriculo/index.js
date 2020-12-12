@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, useHistory, useParams} from 'react-router-dom';
+import { useHistory, useParams} from 'react-router-dom';
 import api from '../../services/api';
 
 import './styles.css';
@@ -42,11 +42,13 @@ export default function Curriculo(){
         try{
              await api.post( `curriculo/${matricula}`, data);
             //alert('Cadastro feito');
-            history.push('/alunos');
+            history.push(`/viewcurriculo/${matricula}`);
         }catch(err){
             alert('Erro ao cadastrar');
         }
     }
+
+   
 
 
     return (
@@ -55,8 +57,8 @@ export default function Curriculo(){
                 <section>
                     <img src={logoImg} alt="logo" />
 
-                    
-                    <Link className="button" to="/mapa">Visualizar Mapa</Link>
+                
+                   
                     <ul>
                     {alunos.map(aluno => (
                     <li key={aluno.id}>
@@ -103,7 +105,7 @@ export default function Curriculo(){
                      <textarea placeholder="Descricao" value={descricao}
                          onChange={e => setDescricao(e.target.value)} />
         
-                    <button className="button" type="submit">Cadastrar</button>
+                    <button  className="button" type="submit">Cadastrar</button>
 
 
                 </form>
