@@ -41,7 +41,7 @@ exports.atualizarUserId = async (req, res) => {
   const { nome, datanascimento, datadeconclusao, turmareferente } = req.body;
 
   const response = await pg.query(
-    "UPDATE Aluno SET nome = $1,  datanascimento = $2,  datadeconclusao = $3, turmareferente = $4 WHERE matricula = $5",
+    "UPDATE Aluno SET nome = $1, datanascimento = $2,  datadeconclusao = $3, turmareferente = $4 WHERE matricula = $5",
     [nome, datanascimento, datadeconclusao, turmareferente, matricula]
   );
   res.status(200).send({message: "Aluno atualizado com sucesso !"});

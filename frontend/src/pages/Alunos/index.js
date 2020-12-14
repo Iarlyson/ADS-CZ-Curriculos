@@ -10,11 +10,7 @@ import './styles.css';
 
 export default function Alunos(){
     
-    const [nome, setNome] = useState('');
 
-    const [datanascimento, setDatanascimento] = useState('');
-    const [datadeconclusao, setDatadeconclusao] = useState('');
-    const [turmareferente, setTurmareferente] = useState('');
     
     const [alunos, setAlunos] = useState([]);
     const history = useHistory();
@@ -36,30 +32,16 @@ export default function Alunos(){
         }
     }
 
-  async function atualizarAlunos(matricula){
+  
+    function editUser(data){
+        localStorage.setItem('userName',data.nome);
+        localStorage.setItem('userMatricula',data.matricula);
+        localStorage.setItem('userDataNascimento',data.datanascimento);
+        localStorage.setItem('userDataDeConclusao',data.datadeconclusao);
+        localStorage.setItem('userTurmaReferente',data.turmareferente);
+        history.push(`/editaraluno/${data.matricula}`);
 
-
-        const data = {
-            nome, 
-            datanascimento,
-            datadeconclusao,
-            turmareferente
-        };
-        
-      
-
-        try{
-           await api.put( `usuario/${matricula}`, data);
-
-            alert("feito")
-        }catch(err){
-            alert('erro ao deletar, tente novamente');
-            console.log(err);
-        }
-
-
-    }
-
+      }
 
     function Logout(){
         history.push('/');
@@ -82,33 +64,29 @@ export default function Alunos(){
             <h1>Alunos Cadastrados</h1>
             <ul>
                 {alunos.map(aluno => (
-                    <form onSubmit={atualizarAlunos}>
+                    <form>
                     <li key={aluno.id}>
 
                     <strong>Nome:</strong>
-                    <input type="text" defaultValue={aluno.nome}
-                    onChange={e => setNome(e.target.value)}  />
+                    <input type="text" value={aluno.nome} />
 
                     <strong>Matricula:</strong>
                     <input value={aluno.matricula} />
                                     
                     <strong>Data Nascimento:</strong>
-                    <input defaultValue={aluno.datanascimento} 
-                    onChange={e => setDatanascimento(e.target.value)} />
+                    <input value={aluno.datanascimento} />
 
                     <strong>Ano Conclusão:</strong>
-                    <input  defaultValue={aluno.datadeconclusao}
-                    onChange={e => setDatadeconclusao(e.target.value)} />
+                    <input  value={aluno.datadeconclusao}  />
 
                     <strong>Turma Referente:</strong>
-                    <input defaultValue={aluno.turmareferente}
-                    onChange={e => setTurmareferente(e.target.value)} />
+                    <input value={aluno.turmareferente}/>
 
                     <button onClick={() => deltarAlunos(aluno.matricula)} type="button">
                         <FiX size={21} color="#0e3746" />
                     </button>
                     
-                    <input className="btAtualiza" type="submit"  value="Atualizar"/>
+                    <input className="btAtualiza" onClick={() => editUser(aluno)} type="submit"  value="Atualizar"/>
                     </li>
 
                      </form>

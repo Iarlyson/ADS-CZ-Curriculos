@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {Link, useHistory, useParams} from 'react-router-dom';
+import React, {useState} from 'react';
+import {Link, useHistory} from 'react-router-dom';
 import { FiPower} from 'react-icons/fi';
 
 import api from '../../services/api';
@@ -9,37 +9,31 @@ import logoImg from '../../assets/logo.png';
 import './styles.css';
 
 export default function Alunos(){
-var nomedobanco;
-var matriculadobanco;
-var datanascimentodobanco;
-var datadeconclusaodobanco;
-var turmareferentedobanco;
-    const [nome, setNome] = useState('');
-    const [idmatricula, setMatricula] = useState('');
-    const [datanascimento, setDatanascimento] = useState('');
-    const [datadeconclusao, setDatadeconclusao] = useState('');
-    const [turmareferente, setTurmareferente] = useState('');
+    const userNome = localStorage.getItem('userName');
+    const userMatricula = localStorage.getItem('userMatricula');
+    const userDataNascimento = localStorage.getItem('userDataNascimento');
+    const userDataDeConclusao = localStorage.getItem('userDataDeConclusao');
+    const userTurmaReferente = localStorage.getItem('userTurmaReferente');
     
-    const [alunos, setAlunos] = useState([]);
+
+    const [nome, setNome] = useState(userNome);
+    const [matricula, setMatricula] = useState(userMatricula);
+    const [datanascimento, setDatanascimento] = useState(userDataNascimento);
+    const [datadeconclusao, setDatadeconclusao] = useState(userDataDeConclusao);
+    const [turmareferente, setTurmareferente] = useState(userTurmaReferente);
+    
     const history = useHistory();
-    var {matricula} = useParams();
-    {alunos.map(aluno => (
-        nomedobanco = useState(aluno.nome)
-    ))};
 
-    useEffect(() =>{
-        api.get(`usuario/${matricula}`).then(response => {
-            setAlunos(response.data);
-        })
-    }, [matricula]);
 
-  async function atualizarAlunos(matriculaid){
+
+
+  async function atualizarAlunos(){
 
 
         const data = {
             nome, 
-            idmatricula,
             datanascimento,
+            matricula,
             datadeconclusao,
             turmareferente
         };
@@ -47,9 +41,7 @@ var turmareferentedobanco;
       
 
         try{
-           await api.put( `usuario/${matriculaid}`, data);
-
-            alert("feito")
+           await api.put( `usuario/${userMatricula}`, data);
         }catch(err){
             alert('erro ao deletar, tente novamente');
         }
@@ -85,7 +77,7 @@ var turmareferentedobanco;
                     onChange={e => setNome(e.target.value)}  />
 
                     <strong>Matricula:</strong>
-                    <input type="number" value={idmatricula}
+                    <input type="number" value={matricula}
                     onChange={e => setMatricula(e.target.value)}/>
 
                     <strong>Data Nascimento:</strong>
@@ -101,7 +93,7 @@ var turmareferentedobanco;
                     onChange={e => setTurmareferente(e.target.value)} />
 
                     
-                    <input className="btAtualiza" type="submit" onClick={() => atualizarAlunos(aluno.matricula)}  value="Atualizar"/>
+                    <input className="btAtualiza" type="submit" value="Atualizar"/>
                     </li>
 
                      </form>
