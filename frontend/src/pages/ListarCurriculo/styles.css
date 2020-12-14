@@ -34,6 +34,8 @@
 .lista-container .content section {
     width: 100%;
     max-width: 320px;
+    align-items: center;
+    margin-bottom: 350px;
 }
 
 
@@ -41,6 +43,10 @@
 .lista-container .content section h1{
     margin: 8px 0 32px;
     font-size: 25px;
+}
+
+ .lista-container  .mapa {
+    align-items: center;
 }
 
 .lista-container ul {

@@ -7,7 +7,6 @@ import api from '../../services/api';
 import './styles.css';
 
 
-
 import logoImg from '../../assets/logo.png';
 import dev from '../../assets/dev.png';
 
