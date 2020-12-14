@@ -5,7 +5,7 @@ import api from '../../services/api';
 
 
 import './styles.css';
-import logoImg from '../../assets/logo.png';
+
 
 import GoogleApiWrapper from './../Mapa/index';
 
@@ -38,7 +38,7 @@ export default function ListarCurriculo() {
         <div className="lista-container">
             <div className="content">
                 <section>
-                    <img src={logoImg} alt="logo" />
+                
                     <h1> Seu Curriculo</h1>
 
 

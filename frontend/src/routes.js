@@ -9,6 +9,7 @@ import Curriculo from './pages/curriculo';
 import Mapa from './pages/Mapa';
 import ListarCurriculo from './pages/ListarCurriculo';
 import ConsuNome from './pages/ConsuNome';
+import ConsuTec from './pages/ConsuTec';
 
 
 
@@ -25,6 +26,7 @@ export default function Routes(){
                 <Route exact path='/mapa/:matricula' component={Mapa} />
                 <Route path='/viewcurriculo/:matricula' component={ListarCurriculo} />
                 <Route path='/consunome' component={ConsuNome} />
+                <Route path='/consutec' component={ConsuTec} />
                
             </Switch>
         </BrowserRouter>

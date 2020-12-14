@@ -24,29 +24,30 @@
     align-items: center;
 }
 
-.lista-container  img {
-    
-    height: 85px;
-}
 
 
 
 .lista-container .content section {
     width: 100%;
-    max-width: 320px;
+    max-width: 400px;
     align-items: center;
-    margin-bottom: 350px;
+    margin-bottom: 50px;
 }
 
 
 
 .lista-container .content section h1{
-    margin: 8px 0 32px;
-    font-size: 25px;
+    margin: 12px 0 30px;
+    font-size: 32px;
 }
 
- .lista-container  .mapa {
+ .lista-container .mapa {
+     width: 400px;
+     height:300px;
     align-items: center;
+    padding-top: 50%;
+
+
 }
 
 .lista-container ul {

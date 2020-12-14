@@ -14,6 +14,7 @@
 .curriculo-container .content {
     width: 100%;
     padding: 96px;
+    height: 95%;
     background: #FFF;
     box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
     border-radius: 8px;
@@ -37,8 +38,23 @@
 .curriculo-container .content form input{
     margin-top: 8px;
 }
+.curriculo-container .content form label{
+    margin-top: 2px;
+    font-size: 16px;
+    font: 400 18px Roboto, sans-serif;
+}
+
+.curriculo-container .content form select option{
+    font: 400 18px Roboto, sans-serif;
+    font-size: 16px;
+}
+
 
 .curriculo-container .content form textarea{
+    margin-top: 8px;
+}
+
+.curriculo-container .content form select {
     margin-top: 8px;
 }
 

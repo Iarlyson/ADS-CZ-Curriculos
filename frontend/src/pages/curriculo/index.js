@@ -86,6 +86,15 @@ var trabalhando = trabalho.toString();
                 </section>
                
                 <form onSubmit={handleAluno}>
+
+                <label>
+                        Trabalhando?
+                    <select  value={trabalho} onChange={e => setTrabalhando(e.target.value)} >
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                    </label>
+                    
                     <input type="email"
                          placeholder="Email" value={email}
                          onChange={e => setEmail(e.target.value)} />
@@ -95,13 +104,7 @@ var trabalhando = trabalho.toString();
                          placeholder="Telefone"
                          value={telefone}
                          onChange={e => setTelefone(e.target.value)} />
-                    <label>
-                        Trabalhando?
-                    <select value={trabalho} onChange={e => setTrabalhando(e.target.value)} >
-                        <option value="Sim">Sim</option>
-                        <option value="Não">Não</option>
-                    </select>
-                    </label>
+                  
                     <input type="text"
                          placeholder="tecnologia"
                          value={tecnologia}

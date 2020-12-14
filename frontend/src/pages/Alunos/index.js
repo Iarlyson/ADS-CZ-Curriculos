@@ -72,6 +72,7 @@ export default function Alunos(){
                 <span>Bem vindo, Administrador</span>
 
                 <Link className="button" to="/Adm">Cadastrar Novo Aluno</Link>
+                <Link className="button" to="/consunome">Pesquisar</Link>
                 <button onClick={Logout} type="button">
                     <FiPower size={19} color="#0e3746" />    
                 </button>

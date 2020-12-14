@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { Link, useHistory} from 'react-router-dom';
 import { BsSearch} from 'react-icons/bs';
 
 import './styles.css';
@@ -12,6 +13,7 @@ export default function ConsuNome() {
     const [alunos, setAlunos] = useState([]);
     const [filter02, setFilter02] = useState([]);
 
+    const history = useHistory();
 
     useEffect(() =>{
         api.get(`usuario/`).then(response => {
@@ -28,7 +30,10 @@ export default function ConsuNome() {
         )
     }, [pesquisa, alunos])
 
-   
+
+    function curriculoUser(matriculaid){
+        history.push(`/viewcurriculo/${matriculaid}` );
+    }
 
 
     return (
@@ -37,8 +42,7 @@ export default function ConsuNome() {
                 <img src={logoImg} alt="logo" />
                 <input type='text'  placeholder="Buscar Usuario pro Nome"
                 onChange={e => setPesquisa(e.target.value)}/>
-                <button className="butao">Buscar por Descrição</button>
-              
+                <Link className="butao" to="/consutec">Pesquisa por Tecnologia</Link>
             </header>
 
             <ul>
@@ -48,7 +52,7 @@ export default function ConsuNome() {
                     <p>{aluno.nome}</p>   
                     <strong>Matricula</strong>
                     <p>{aluno.matricula}</p>  
-                    <button type="button">
+                    <button onClick={() => curriculoUser(aluno.matricula)} type="button">
                         <BsSearch size={20} color="0e3746" />
                     </button>
                  </li>
