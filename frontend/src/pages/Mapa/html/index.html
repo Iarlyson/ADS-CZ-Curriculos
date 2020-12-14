@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <link rel="shortcut icon" href="../media/icon.ico" type="image/x-icon" />
+  <title>Mapa - Racha Moradia</title>
+  <meta http-equiv="refresh" content="180">
+</head>
+<body>
+
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <h1 class="header center white-text text-lighten-2">Mapa</h1>
+      <div class="card-panel blue-grey"> 
+        <!--The div element for the map -->
+        <style>
+          /* Always set the map height explicitly to define the size of the div
+           * element that contains the map. */
+          #map {
+            height: 450px;
+            width: 100%;
+          }
+        </style>
+
+    
+    
+      <div id="map"></div>
+
+    <div class="glass-wrapper">
+      <div class="instrucao">
+        <h5>Como cadastrar usando o mapa?</h5>
+        <p class="instrucao">
+              Passo 1: Clique em "LISTAR MORADIAS CADASTRADAS".
+          <br>Passo 2: Clique em "CADASTRAR NOVA MORADIA" e feche a mensagem que aparece.
+          <br>Passo 3: Localize no mapa o local onde deseja cadastrar e clique sobre ele.
+          <br>Passo 4: Clique sobre a marcação que apareceu e insira os dados nescessários.
+          <br>Passo 5: Salve os dados e espere a mensagem de confirmação aparecer.
+        
+          <br><br>Pronto, sua residência foi cadastrada com sucesso. :)</p>
+      </div>
+    </div>
+    
+    
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+
+ 
+   <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-database.js"></script> 
+      
+      <script src="../js/geolocation.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdjJLgiXQaPIccPfH2ZoRt3eZilZwS3Kw&callback=initMap" async defer></script>
+        <center>
+          <br>
+          <br>
+          <button onclick="Cadastra()" >Cadastrar Endereço</button>
+          <button onclick="Procurar()"> Mostrar endereço do dono do Currículo</button>
+       
+            <h6>Filtrar por tipo de Moradia</h6>
+  
+          <select class="browser-default" id="tipoMoradiafiltro">
+            <option value="Casa">Casa</option>
+            <option value="Casa coletiva">Casa coletiva</option>
+            <option value="Sobrado">Sobrado</option>
+            <option value="Apartamento">Apartamento</option>
+            <option value="Apartamento coletivo">Apartamento coletivo</option>
+                 </select> </td></tr>
+  
+                 <a  onclick="Filtrar()" id="start-button" class="btn-large waves-effect waves-light blue-grey darken-4">Filtrar</a>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<footer >
+   
+</footer>
+
+
+
+
+
+       <!--  Scripts-->
+
+       <script src="../js/geolocation.js"></script>
+
+       
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+ <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+
+   <!-- TODO: Add SDKs for Firebase products that you want to use
+https://firebase.google.com/docs/web/setup#config-web-app -->
+
+  <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-database.js"></script> 
+<script src="../js/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+https://firebase.google.com/docs/web/setup#config-web-app -->
+
+
+  </body>
+</html>

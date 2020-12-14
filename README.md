@@ -16,7 +16,11 @@ CREATE TABLE Aluno(
 	PRIMARY KEY(Matricula)
 );
 
-
+Joao Carlos Brasileiro
+2017120101 
+10-01-1199
+12-12-2019
+2017.1
 
 INSERT INTO Aluno( Nome, Matricula, DataNascimento, DatadeConclusao, TurmaReferente) VALUES ('Joao Carlos Brasileiro', 2017120101, '10-01-1199', '12-12-2019', '2017.1');
 

@@ -20,7 +20,7 @@ export default function Routes(){
                 <Route path="/alunos/" component={Alunos} />
 
                 <Route path='/curriculo/:matricula' component={Curriculo} />
-                <Route path='/mapa' component={Mapa} />
+                <Route exact path='/mapa/:matricula' component={Mapa} />
                 <Route path='/viewcurriculo/:matricula' component={ListarCurriculo} />
                 <Route path='/consunome' component={ConsuNome} />
                

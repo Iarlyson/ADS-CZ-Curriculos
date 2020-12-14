@@ -1,30 +1,25 @@
-import React, { Component } from 'react';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import React, {useEffect } from 'react';
+import { useParams } from 'react-router-dom'
 
-const mapStyles = {
-  width: '400px',
-  height: '300px'
-  
-};
+//import { Map, GoogleApiWrapper } from 'google-maps-react';
+import Mapfront from './html/index.html'
 
-export class Mapa extends Component {
-  render() {
-    return (
-      <Map
-        google={this.props.google}
-        zoom={14}
-        style={mapStyles}
-        initialCenter={
-          {
-            lat: -6.886944257322147,
-            lng: -38.557521304831454
-          }
-        }
-      />
-    );
-  }
+
+export default function Mapa (){
+
+var {matricula} = useParams();
+
+useEffect(()=>{
+  localStorage.setItem("matricula", matricula);
+}, [matricula])
+
+function createMarkup() {
+  return {__html: Mapfront};
 }
 
-export default GoogleApiWrapper({
-  apiKey: 'AIzaSyCdjJLgiXQaPIccPfH2ZoRt3eZilZwS3Kw&callback'
-})(Mapa);
+    return (
+<div dangerouslySetInnerHTML={createMarkup()} />
+    );
+  
+}
+

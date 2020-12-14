@@ -43,5 +43,9 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "html-loader": "^1.3.2",
+    "react-app-rewired": "^2.1.8"
+  }
 }
