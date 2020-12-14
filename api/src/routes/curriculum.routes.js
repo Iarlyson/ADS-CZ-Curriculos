@@ -7,6 +7,8 @@ router.post('/curriculo/:matricula', curriculumController.criarCurriculo);
 // Rota responsável por listar  um 'currículo' pelo 'Id': (GET): localhost:3000/api/curriculo/:id
 router.get('/curriculo/:matricula', curriculumController.listarCurriculo);
 // Rota responsável por atualizar um  'currículo' pelo 'Id' : (GET): localhost:3000/api/curriculo/:id
+router.get('/curriculo/', curriculumController.listarTodosCurriculo);
+// Rota responsável por atualizar um  'currículo' pelo 'Id' : (GET): localhost:3000/api/curriculo/:id
 router.put('/curriculo/:matricula', curriculumController.atualizarCurriculo);
 // Rota responsável por deletar um 'currículo' pelo 'Id': (DELETE): localhost:3000/api/curriculo/:id
 router.delete('/curriculo/:matricula', curriculumController.deleteCurriculo);

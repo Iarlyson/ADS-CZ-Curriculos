@@ -160,7 +160,7 @@ function salvarFirebase(){
 var matricula = localStorage.getItem("matricula"); 
 var nome = document.getElementById('nome').value
 var cidade = document.getElementById('cidade').value;
-var telefone = document.getElementById('estado').value;
+var estado = document.getElementById('estado').value;
  var ativo = "true";
 
 var latlng = marker.getPosition();
@@ -207,9 +207,9 @@ function Procurar(){
       var info = '<center><h3 style="color:black;">Detalhes da Moradia</h3><div id="formpreenchido"></center>'+
       '<table style="color:black"; '+
       '<tr><td>Nome:</td> <td><label>' +item.val().nome + '</label></td> </tr>'+
-      '<tr><td>Telefone:</td> <td><label>' + item.val().matricula + '</label></td> </tr>'+
-      '<tr><td>Meu email:</td> <td><label>' + item.val().email + '</label></td> </tr>'+
-      '<tr><td>Valor do aluguel:</td> <td><label>' + item.val().cidade + '</label></td> </tr>'
+      '<tr><td>Matricula:</td> <td><label>' + item.val().matricula + '</label></td> </tr>'+
+      '<tr><td>Meu email:</td> <td><label>' + item.val().cidade + '</label></td> </tr>'+
+      '<tr><td>Cidade:</td> <td><label>' + item.val().estado + '</label></td> </tr>'
      
       var telaInformacao = new google.maps.InfoWindow({
         content: info

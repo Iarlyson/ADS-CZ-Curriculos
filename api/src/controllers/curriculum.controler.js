@@ -35,6 +35,16 @@ exports.criarCurriculo =  async (req, res) => {
     }));
 }
 
+//  Método responsável para listar todos os 'Curriculo' de usuário no banco Mongodb:
+
+exports.listarTodosCurriculo =  async (req, res) => {
+    const curriculos = mongodb.db(`${process.env.MONGO_DATABASE}`).collection('curriculoalunos');
+     await curriculos.find().toArray((erro, result) =>{
+
+        res.status(200).send(result);
+
+    }); 
+}
 
 //  Método responsável por listar o 'Curriculo' de determinado usuário no banco Mongodb:
 
