@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import {useHistory} from 'react-router-dom';
 import { BsSearch} from 'react-icons/bs';
 
 
@@ -14,45 +14,55 @@ export default function ConsuTec(){
     const [pesquisa, setPesquisa] = useState('');
     const [curriculos, setCurriculos] = useState([]);
     const [filter02, setFilter02] = useState([]);
+  
+    const history = useHistory();
 
 
     useEffect(() =>{
-        api.get(`curriculo/`).then(response => {
+        api.get('curriculo/').then(response => {
             setCurriculos(response.data);
         })
     }, []);
 
+   
+
     useEffect(() =>{
         setFilter02(
             curriculos.filter(curriculo => {
-                return curriculo.descricao.toLowerCase().includes(pesquisa.toLowerCase())
+                return curriculo.tecnologia.toLowerCase().includes(pesquisa.toLowerCase())
             })
         )
     }, [pesquisa, curriculos])
+  
+    function curriculoUser(matriculaid){
+        history.push(`/viewcurriculo/${matriculaid}` );
+    }
 
-
- 
-
-
+    
 
     return(
           <div className="consutec-container">
             <header>
                 <img src={logoImg} alt="logo" />
                 <input type='text'  placeholder="Buscar Usuario por Tecnologia"
-                onChange={e => setPesquisa(e.target.value)}/>
+                onChange={e => setPesquisa(e.target.value)}
+                 value={pesquisa}
+                />
             </header>
 
             <ul>
       
-            {filter02.map(curriculo => (
+            { filter02.map(curriculo => (
                     <li key={curriculo.id}>
-
-                            <strong>Descrição</strong>
-                            <p>{curriculo.descricao}</p>
                             <strong>Tecnologias</strong>
                             <p>{curriculo.tecnologia}</p>
-                            <button  type="button">
+                            <strong>Descricao</strong>
+                            <p>{curriculo.descricao}</p>
+                            <strong>Matricula</strong>
+                            <p>{curriculo.matricula}</p>
+                            
+
+                            <button onClick={() => curriculoUser(curriculo.matricula)} type="button">
                                 <BsSearch size={20} color="0e3746" />
                             </button>
                            
