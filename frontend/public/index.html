@@ -34,36 +34,24 @@ var infowindow;
 var messagewindow;
 var geoinfo;
 var pontoSalvo = '<div id="message" style="color:black;">Ponto Salvo</div>';
-var formvazio = '<center><h3 style="color:black;">Cadastrar Moradia</h3></center><div id="formvazio">'+
+var formvazio = '<center><h3 style="color:black;">Cadastrar Endereço</h3></center><div id="formvazio"><br>'+
              
               '<div class="row">'+
                 '<div class="input-field col s12">'+
+                  '<label for="nome">Nome</label><br>'+
                   '<input id="nome" type="text" class="validate">'+
-                  '<label for="nome">Nome</label>'+
               '</div>'+
               '<div class="row">'+
                 '<div class="input-field col s12">'+
-                  '<input id="telefone" type="text" class="validate">'+
-                  '<label for="telefone">Telefone</label>'+
+                  '<label for="cidade">Cidade</label><br>'+
+                  '<input id="cidade" type="text" class="validate">'+
               '</div>'+
               '<div class="row">'+
                 '<div class="input-field col s12">'+
-                  '<input id="meuEmail" type="email" class="validate">'+
-                  '<label for="meuEmail">Email</label>'+
+                  '<label for="estado">Estado</label><br>'+
+                  '<input id="estado" type="text" class="validate">'+
               '</div>'+
-              '<div class="row">'+
-                '<div class="input-field col s12">'+
-                  '<input id="aluguel" type="text" class="validate">'+
-                  '<label for="aluguel">Alugel</label>'+
-              '</div>'+
-              
-              'Tipo de Moradias: <select id="tipoMoradia">'+
-                    '<option value="Casa">Casa</option>'+
-                    '<option value="Casa coletiva">Casa coletiva</option>'+
-                    '<option value="Sobrado">Sobrado</option>'+
-                    '<option value="Apartamento">Apartamento</option>'+
-                    '<option value="Apartamento coletivo">Apartamento coletivo</option>'+
-                         '</select>'+
+
                          '<br/><br/><center><input class="btn-large waves-effect waves-light blue-grey darken-4" type="button" value="Salvar" onclick="salvarFirebase()"/></center>'+
               
             '</div>';
@@ -75,9 +63,9 @@ var formvazio = '<center><h3 style="color:black;">Cadastrar Moradia</h3></center
 
 /*Iniciar mapa*/
 function initMap() {
-  var california = {lat: -7.1630766, lng: -37.9007674};
+  var Paraíba = {lat: -7.1630766, lng: -37.9007674};
   map = new google.maps.Map(document.getElementById('map'), {
-    center: california,
+    center: Paraíba,
     zoom: 7.8
   });
 
@@ -170,11 +158,10 @@ google.maps.event.addListener(map, 'click', function(event) {
 
 function salvarFirebase(){
 var matricula = localStorage.getItem("matricula"); 
-var telefone = document.getElementById('telefone').value;
-var email = document.getElementById('meuEmail').value;
-
-var aluguel = document.getElementById('aluguel').value;
-var tipoMoradia = document.getElementById('tipoMoradia').value;
+var nome = document.getElementById('nome').value
+var cidade = document.getElementById('cidade').value;
+var telefone = document.getElementById('estado').value;
+ var ativo = "true";
 
 var latlng = marker.getPosition();
 var lat = latlng.lat();
@@ -182,23 +169,23 @@ var long = latlng.lng();
 
 var localizacao = {
   matricula : matricula,
-  telefone : telefone,
-  email: email,
-  aluguel : aluguel,
-  tipoMoradia : tipoMoradia,
+  nome : nome,
+  cidade : cidade,
+  estado : estado,
   lat : lat,
-  long : long
+  long : long,
+  ativo : ativo
 }
 
 document.getElementById("nome").value="";
-document.getElementById("telefone").value="";
-document.getElementById("meuEmail").value="";
-document.getElementById("aluguel").value="";
+document.getElementById("cidade").value="";
 
-let db = firebase.database().ref().child('Moradias').push(localizacao);
+document.getElementById("estado").value="";
+
+let db = firebase.database().ref().child('Endereços').push(localizacao);
 db.set(localizacao);
 
-alert("Moradia Cadastrada!!!");
+alert("Endereço Cadastrad!!!");
 
 }
 
@@ -213,17 +200,16 @@ alert("Moradia Cadastrada!!!");
 function Procurar(){
 
   initMap();
-  firebase.database().ref('Moradias').on('value', function (snapshot){
+  firebase.database().ref('Endereços').on('value', function (snapshot){
     snapshot.forEach(function (item){ 
       
       
       var info = '<center><h3 style="color:black;">Detalhes da Moradia</h3><div id="formpreenchido"></center>'+
       '<table style="color:black"; '+
       '<tr><td>Nome:</td> <td><label>' +item.val().nome + '</label></td> </tr>'+
-      '<tr><td>Telefone:</td> <td><label>' + item.val().telefone + '</label></td> </tr>'+
+      '<tr><td>Telefone:</td> <td><label>' + item.val().matricula + '</label></td> </tr>'+
       '<tr><td>Meu email:</td> <td><label>' + item.val().email + '</label></td> </tr>'+
-      '<tr><td>Valor do aluguel:</td> <td><label>' + item.val().aluguel + '</label></td> </tr>'+
-      '<tr><td>Tipo de moradia:</td> <td><label>' + item.val().tipoMoradia + '</label></td> </tr>';
+      '<tr><td>Valor do aluguel:</td> <td><label>' + item.val().cidade + '</label></td> </tr>'
      
       var telaInformacao = new google.maps.InfoWindow({
         content: info

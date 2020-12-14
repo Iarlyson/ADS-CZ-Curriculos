@@ -12,12 +12,14 @@ const mongodb = new MongoClient(`mongodb://${process.env.MONGO_HOST}:${process.e
 //  Método responsável por criar o 'Curriculo' no banco Mongodb:
 exports.criarCurriculo =  async (req, res) => {
     const matricula = parseInt(req.params.matricula);
-    const {descricao, email, telefone, linkedin, github} = req.body;
+    const {descricao, email, telefone, trabalhando, tecnologia, linkedin, github} = req.body;
     const curriculo = {
         matricula: matricula,
         descricao: descricao,
         email: email,
         telefone: telefone,
+        trabalhando: trabalhando,
+        tecnologia: tecnologia,
         linkedin: linkedin,
         github: github
     };
@@ -51,12 +53,14 @@ exports.listarCurriculo =  async (req, res) => {
 
 exports.atualizarCurriculo =  async (req, res) => {
     const matricula = parseInt(req.params.matricula);
-    const {descricao, email, telefone, linkedin, github} = req.body;
+    const {descricao, email, telefone, trabalhando, tecnologia, linkedin, github} = req.body;
     const item = {
         matricula: matricula,
         descricao: descricao,
         email: email,
         telefone: telefone,
+        trabalhando: trabalhando,
+        tecnologia: tecnologia,
         linkedin: linkedin,
         github: github
     };

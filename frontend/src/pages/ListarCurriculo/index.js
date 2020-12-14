@@ -72,6 +72,10 @@ export default function ListarCurriculo() {
                             <p>{curriculo.email}</p>
                             <strong>Telefone</strong>
                             <p>{curriculo.telefone}</p>
+                            <strong>Trabalhando ?</strong>
+                            <p>{curriculo.trabalhando}</p>
+                            <strong>Tecnologias</strong>
+                            <p>{curriculo.tecnologia}</p>
                             <strong>Linkedin</strong>
                             <p>{curriculo.linkedin}</p>
                             <strong>github</strong>

@@ -27,19 +27,6 @@
     
       <div id="map"></div>
 
-    <div class="glass-wrapper">
-      <div class="instrucao">
-        <h5>Como cadastrar usando o mapa?</h5>
-        <p class="instrucao">
-              Passo 1: Clique em "LISTAR MORADIAS CADASTRADAS".
-          <br>Passo 2: Clique em "CADASTRAR NOVA MORADIA" e feche a mensagem que aparece.
-          <br>Passo 3: Localize no mapa o local onde deseja cadastrar e clique sobre ele.
-          <br>Passo 4: Clique sobre a marcação que apareceu e insira os dados nescessários.
-          <br>Passo 5: Salve os dados e espere a mensagem de confirmação aparecer.
-        
-          <br><br>Pronto, sua residência foi cadastrada com sucesso. :)</p>
-      </div>
-    </div>
     
     
     <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
@@ -53,19 +40,8 @@
           <br>
           <br>
           <button onclick="Cadastra()" >Cadastrar Endereço</button>
-          <button onclick="Procurar()"> Mostrar endereço do dono do Currículo</button>
+          <button onclick="Procurar()"> Mostrar Endereço</button>
        
-            <h6>Filtrar por tipo de Moradia</h6>
-  
-          <select class="browser-default" id="tipoMoradiafiltro">
-            <option value="Casa">Casa</option>
-            <option value="Casa coletiva">Casa coletiva</option>
-            <option value="Sobrado">Sobrado</option>
-            <option value="Apartamento">Apartamento</option>
-            <option value="Apartamento coletivo">Apartamento coletivo</option>
-                 </select> </td></tr>
-  
-                 <a  onclick="Filtrar()" id="start-button" class="btn-large waves-effect waves-light blue-grey darken-4">Filtrar</a>
         </center>
       </div>
     </div>

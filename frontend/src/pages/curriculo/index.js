@@ -11,6 +11,8 @@ export default function Curriculo(){
 
     const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
+    const [trabalho, setTrabalhando] = useState('');
+    const [tecnologia, setTecnologia] = useState('');
     const [linkedin, setLinkedIn] = useState('');
     const [github, setGithub] = useState('');
     const [descricao, setDescricao] = useState('');
@@ -25,8 +27,7 @@ export default function Curriculo(){
             setAlunos(response.data);
         })
     }, [matricula]);
-
-
+var trabalhando = trabalho.toString();
     async function handleAluno(e){
         e.preventDefault();
 
@@ -34,6 +35,8 @@ export default function Curriculo(){
             matricula,
             email, 
             telefone,
+            trabalhando,
+            tecnologia,
             linkedin,
             github,
             descricao
@@ -92,7 +95,17 @@ export default function Curriculo(){
                          placeholder="Telefone"
                          value={telefone}
                          onChange={e => setTelefone(e.target.value)} />
-
+                    <label>
+                        Trabalhando?
+                    <select value={trabalho} onChange={e => setTrabalhando(e.target.value)} >
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                    </label>
+                    <input type="text"
+                         placeholder="tecnologia"
+                         value={tecnologia}
+                         onChange={e => setTecnologia(e.target.value)} />
                     <input type="text"
                          placeholder="LinkedIn"
                          value={linkedin}
