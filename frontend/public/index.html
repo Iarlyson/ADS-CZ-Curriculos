@@ -125,7 +125,13 @@ infoWindow.open(map);
 //Evento pra criar um marcador e pra cadastrar eventos clicando no marcador
 function EventoMarcarCadastrar(){
 
-  
+  firebase.database().ref('Endereços').on('value', function (snapshot){
+    snapshot.forEach(function (item){ 
+      
+if(item.val().ativo=="true"){
+  alert("Você já está matriculado! caso queira cadastrar novo endereço, apague o endereço antigo primeiro!")
+}
+else{
 
 infowindow = new google.maps.InfoWindow({
   content: formvazio
@@ -185,14 +191,24 @@ document.getElementById("estado").value="";
 let db = firebase.database().ref().child('Endereços').push(localizacao);
 db.set(localizacao);
 
-alert("Endereço Cadastrad!!!");
-
+alert("Endereço Cadastrado!!!");
+}
+    })})
 }
 
 
 
 
-
+function deletarendereço(){
+  var matricula = localStorage.getItem("matricula"); 
+  firebase.database().ref('Endereços').on('value', function (snapshot) {
+                snapshot.forEach(function (item) {
+                    if (matricula === item.val().matricula) {
+                      firebase.database().ref('/Endereços/'+item.key).remove();
+                      alert("deletado")
+                    }
+    })});             
+}
 
 
 
@@ -204,7 +220,7 @@ function Procurar(){
     snapshot.forEach(function (item){ 
       
       
-      var info = '<center><h3 style="color:black;">Detalhes da Moradia</h3><div id="formpreenchido"></center>'+
+      var info = '<center><h3 style="color:black;">Detalhes do Endereço</h3><div id="formpreenchido"></center>'+
       '<table style="color:black"; '+
       '<tr><td>Nome:</td> <td><label>' +item.val().nome + '</label></td> </tr>'+
       '<tr><td>Matricula:</td> <td><label>' + item.val().matricula + '</label></td> </tr>'+
@@ -242,18 +258,18 @@ function Procurar(){
 
 function Filtrar(){
   initMap();
-  
-  firebase.database().ref('Moradias').on('value', function (snapshot){
+  var matricula = localStorage.getItem("matricula"); 
+
+  firebase.database().ref('Endereços').on('value', function (snapshot){
     snapshot.forEach(function (item){ 
       
-if(document.getElementById('tipoMoradiafiltro').value==item.val().tipoMoradia){
-  var info = '<center><h3 style="color:black;">Detalhes da Moradia</h3><div id="formpreenchido"></center>'+
-  '<table style="color:black"; '+
-  '<tr><td>Nome:</td> <td><label>' +item.val().nome + '</label></td> </tr>'+
-  '<tr><td>Telefone:</td> <td><label>' + item.val().telefone + '</label></td> </tr>'+
-  '<tr><td>Meu email:</td> <td><label>' + item.val().email + '</label></td> </tr>'+
-  '<tr><td>Valor do aluguel:</td> <td><label>' + item.val().aluguel + '</label></td> </tr>'+
-  '<tr><td>Tipo de moradia:</td> <td><label>' + item.val().tipoMoradia + '</label></td> </tr>';
+if(matricula==item.val().matricula){
+  var info = '<center><h3 style="color:black;">Detalhes do Endereço</h3><div id="formpreenchido"></center>'+
+      '<table style="color:black"; '+
+      '<tr><td>Nome:</td> <td><label>' +item.val().nome + '</label></td> </tr>'+
+      '<tr><td>Matricula:</td> <td><label>' + item.val().matricula + '</label></td> </tr>'+
+      '<tr><td>Meu email:</td> <td><label>' + item.val().cidade + '</label></td> </tr>'+
+      '<tr><td>Cidade:</td> <td><label>' + item.val().estado + '</label></td> </tr>'
  
   var telaInformacao = new google.maps.InfoWindow({
     content: info

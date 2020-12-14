@@ -9,9 +9,9 @@ import logoImg from '../../assets/logo.png';
 import './styles.css';
 
 export default function Alunos(){
-
+    
     const [nome, setNome] = useState('');
-    const [matricula, setMatricula] = useState('');
+
     const [datanascimento, setDatanascimento] = useState('');
     const [datadeconclusao, setDatadeconclusao] = useState('');
     const [turmareferente, setTurmareferente] = useState('');
@@ -24,23 +24,23 @@ export default function Alunos(){
         })
     }, []);
 
-    async function deltarAlunos(matriculaid){
+    async function deltarAlunos(matricula){
 
         try{
-            await api.delete(`usuario/${matriculaid}`);
+            await api.delete(`usuario/${matricula}`);
 
-            setAlunos(alunos.filter(aluno => aluno.matriculaid !== matriculaid));
+            setAlunos(alunos.filter(aluno => aluno.matricula !== matricula));
+            alert("Deletado !")
         }catch(err){
             alert('erro ao deletar, tente novamente');
         }
     }
 
-  async function atualizarAlunos(matriculaid){
+  async function atualizarAlunos(matricula){
 
 
         const data = {
             nome, 
-            matricula,
             datanascimento,
             datadeconclusao,
             turmareferente
@@ -49,11 +49,12 @@ export default function Alunos(){
       
 
         try{
-           await api.put( `usuario/${matriculaid}`, data);
+           await api.put( `usuario/${matricula}`, data);
 
             alert("feito")
         }catch(err){
             alert('erro ao deletar, tente novamente');
+            console.log(err);
         }
 
 
@@ -89,9 +90,8 @@ export default function Alunos(){
                     onChange={e => setNome(e.target.value)}  />
 
                     <strong>Matricula:</strong>
-                    <input type="number" defaultValue={aluno.matricula}
-                    onChange={e => setMatricula(e.target.value)}/>
-
+                    <input value={aluno.matricula} />
+                                    
                     <strong>Data Nascimento:</strong>
                     <input defaultValue={aluno.datanascimento} 
                     onChange={e => setDatanascimento(e.target.value)} />
@@ -108,7 +108,7 @@ export default function Alunos(){
                         <FiX size={21} color="#0e3746" />
                     </button>
                     
-                    <input className="btAtualiza" type="submit" onClick={() => atualizarAlunos(aluno.matricula)}  value="Atualizar"/>
+                    <input className="btAtualiza" type="submit"  value="Atualizar"/>
                     </li>
 
                      </form>
