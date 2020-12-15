@@ -66,13 +66,14 @@ function initMap() {
   var Paraíba = {lat: -7.1630766, lng: -37.9007674};
   map = new google.maps.Map(document.getElementById('map'), {
     center: Paraíba,
-    zoom: 7.8
+    zoom: 6.5
   });
 
 }
 
 
 function Cadastra(){
+
   initMap()
  
   // //Codigo para Geolocalização.
@@ -125,14 +126,7 @@ infoWindow.open(map);
 //Evento pra criar um marcador e pra cadastrar eventos clicando no marcador
 function EventoMarcarCadastrar(){
 
-  firebase.database().ref('Endereços').on('value', function (snapshot){
-    snapshot.forEach(function (item){ 
-      
-if(item.val().ativo=="true"){
-  alert("Você já está matriculado! caso queira cadastrar novo endereço, apague o endereço antigo primeiro!")
-}
-else{
-
+ 
 infowindow = new google.maps.InfoWindow({
   content: formvazio
 
@@ -192,8 +186,7 @@ let db = firebase.database().ref().child('Endereços').push(localizacao);
 db.set(localizacao);
 
 alert("Endereço Cadastrado!!!");
-}
-    })})
+window.location.reload()
 }
 
 
@@ -206,6 +199,7 @@ function deletarendereço(){
                     if (matricula === item.val().matricula) {
                       firebase.database().ref('/Endereços/'+item.key).remove();
                       alert("deletado")
+                      window.location.reload()
                     }
     })});             
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import api from '../../services/api';
 
 
@@ -15,6 +15,7 @@ export default function ListarCurriculo() {
     const [curriculos, setCurriculo] = useState([]);
 
     var { matricula } = useParams();
+    const history = useHistory();
 
     useEffect(() => {
         api.get(`usuario/${matricula}`).then(response => {
@@ -29,8 +30,31 @@ export default function ListarCurriculo() {
         })
     }, [matricula]);
 
+    async function deltarCurriculo(matricula){
 
+        try{
+            await api.delete(`curriculo/${matricula}`);
 
+            alert("Deletado !")
+            history.push(`/viewcurriculo/${matricula}`);
+
+        }catch(err){
+            alert('erro ao deletar, tente novamente');
+        }
+    }
+
+    function editCurriculo(data){
+        localStorage.setItem('curriculoEmail',data.email);
+        localStorage.setItem('curriculoMatricula',data.matricula);
+        localStorage.setItem('curriculoTelefone',data.telefone);
+        localStorage.setItem('curriculoTrabalhando',data.trabalhando);
+        localStorage.setItem('curriculoTecnologia',data.tecnologia);
+        localStorage.setItem('curriculoLinkedin',data.linkedin);
+        localStorage.setItem('curriculoGithub',data.github);
+        localStorage.setItem('curriculoDescricao',data.descricao);
+        history.push(`/editarcurriculo/${data.matricula}`);
+        
+      }
 
 
 
@@ -66,8 +90,6 @@ export default function ListarCurriculo() {
                     {curriculos.map(curriculo => (
                         <li key={curriculo.id}>
 
-                            <strong>Descrição</strong>
-                            <p>{curriculo.descricao}</p>
                             <strong>Email</strong>
                             <p>{curriculo.email}</p>
                             <strong>Telefone</strong>
@@ -80,6 +102,12 @@ export default function ListarCurriculo() {
                             <p>{curriculo.linkedin}</p>
                             <strong>github</strong>
                             <p>{curriculo.github}</p>
+                            <strong>Descrição</strong>
+                            <p>{curriculo.descricao}</p>
+                                <br/>
+                            <button onClick={() => deltarCurriculo(curriculo.matricula)} type="button">Deletar</button>
+                            <button onClick={() => editCurriculo(curriculo)} type="button">Editar</button>
+
                         </li>
                     ))}
 
