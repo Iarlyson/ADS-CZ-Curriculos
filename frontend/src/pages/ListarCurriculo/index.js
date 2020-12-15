@@ -1,6 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import api from '../../services/api';
+import { FiPower } from 'react-icons/fi';
+
 
 
 
@@ -58,9 +60,13 @@ export default function ListarCurriculo() {
 
 
 
+
     return (
         <div className="lista-container">
             <div className="content">
+
+         
+            
                 <section>
                 
                     <h1> Seu Curriculo</h1>
@@ -105,8 +111,8 @@ export default function ListarCurriculo() {
                             <strong>Descrição</strong>
                             <p>{curriculo.descricao}</p>
                                 <br/>
-                            <button onClick={() => deltarCurriculo(curriculo.matricula)} type="button">Deletar</button>
-                            <button onClick={() => editCurriculo(curriculo)} type="button">Editar</button>
+                            <button className="botao" onClick={() => deltarCurriculo(curriculo.matricula)} type="button">Deletar</button>
+                            <button className="botao" onClick={() => editCurriculo(curriculo)} type="button">Editar</button>
 
                         </li>
                     ))}

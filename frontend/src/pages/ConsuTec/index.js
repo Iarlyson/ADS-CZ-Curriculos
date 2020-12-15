@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
+import { Link, useHistory} from 'react-router-dom';
 import { BsSearch} from 'react-icons/bs';
 
 
@@ -48,6 +48,9 @@ export default function ConsuTec(){
                 onChange={e => setPesquisa(e.target.value)}
                  value={pesquisa}
                 />
+
+                <Link className="butao" to="/consuTraba">Pesquisa Por Trabalho</Link>
+                
             </header>
 
             <ul>
