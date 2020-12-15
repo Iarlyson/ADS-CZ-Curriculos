@@ -9,39 +9,43 @@ import logoImg from '../../assets/logo.png';
 import './styles.css';
 
 export default function Alunos(){
+    
     const userNome = localStorage.getItem('userName');
     const userMatricula = localStorage.getItem('userMatricula');
     const userDataNascimento = localStorage.getItem('userDataNascimento');
     const userDataDeConclusao = localStorage.getItem('userDataDeConclusao');
     const userTurmaReferente = localStorage.getItem('userTurmaReferente');
     
+    const history = useHistory();
+
 
     const [nome, setNome] = useState(userNome);
-    const [matricula, setMatricula] = useState(userMatricula);
     const [datanascimento, setDatanascimento] = useState(userDataNascimento);
     const [datadeconclusao, setDatadeconclusao] = useState(userDataDeConclusao);
     const [turmareferente, setTurmareferente] = useState(userTurmaReferente);
     
-    const history = useHistory();
 
 
 
 
-  async function atualizarAlunos(){
-
+  async function atualizarAlunos(e){
+    e.preventDefault();
 
         const data = {
             nome, 
             datanascimento,
-            matricula,
             datadeconclusao,
             turmareferente
-        };
+        }
         
       
 
         try{
            await api.put( `usuario/${userMatricula}`, data);
+           alert('Editado com sucesso.');
+           localStorage.clear();
+           history.push('/alunos');
+
         }catch(err){
             alert('erro ao deletar, tente novamente');
         }
@@ -76,20 +80,17 @@ export default function Alunos(){
                     <input type="text" value={nome}
                     onChange={e => setNome(e.target.value)}  />
 
-                    <strong>Matricula:</strong>
-                    <input type="number" value={matricula}
-                    onChange={e => setMatricula(e.target.value)}/>
 
                     <strong>Data Nascimento:</strong>
-                    <input value={datanascimento} 
+                    <input type="text" value={datanascimento} 
                     onChange={e => setDatanascimento(e.target.value)} />
 
                     <strong>Ano Conclusão:</strong>
-                    <input  value={datadeconclusao}
+                    <input  type="text" value={datadeconclusao}
                     onChange={e => setDatadeconclusao(e.target.value)} />
 
                     <strong>Turma Referente:</strong>
-                    <input value={turmareferente}
+                    <input type="text" value={turmareferente}
                     onChange={e => setTurmareferente(e.target.value)} />
 
                     
